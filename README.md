@@ -1,4 +1,22 @@
-# Calculator
-A calculator that works on terminal that can do all kinds of basic math like (Addition , Subtraction, Multiplication, etc). its a simple project its just to improve my problem solving skills.
+# Simple Calculator
 
-__Made Without AI__
+A lightweight, robust command-line calculator written in C supporting basic arithmetic operations and safe input handling.
+
+## Features
+- Core operations: Addition, Subtraction, Multiplication, Division.
+- Built-in input validation and division-by-zero protection.
+- Interactive CLI menu.
+
+## Getting Started
+
+### Prerequisites
+
+- **C Compiler:** GCC or Clang (supporting C11 standard)
+- **Build Tool:** `make` or `mingw32-make` (optional)
+
+### Installation & Build
+
+Clone the repository:
+```bash
+git clone [https://github.com/OmarHanyMohsen/Simple-Calculator.git](https://github.com/OmarHanyMohsen/Simple-Calculator.git)
+cd Simple-Calculator
