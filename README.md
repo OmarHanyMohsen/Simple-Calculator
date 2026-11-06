@@ -14,9 +14,8 @@ A lightweight, robust command-line calculator written in C supporting basic arit
 - **C Compiler:** GCC or Clang (supporting C11 standard)
 - **Build Tool:** `make` or `mingw32-make` (optional)
 
-### Installation & Build
+### Installation
 
 Clone the repository:
 ```bash
 git clone [https://github.com/OmarHanyMohsen/Simple-Calculator.git](https://github.com/OmarHanyMohsen/Simple-Calculator.git)
-cd Simple-Calculator
