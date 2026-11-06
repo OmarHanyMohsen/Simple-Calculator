@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <stdbool.h>
 
-float calculate(float n1, float n2, char op);
+bool calculate(float n1, float n2, char op, float *results);
 
 int main(void)
 {
@@ -9,50 +10,69 @@ int main(void)
     float result = 0.0;
     char op;
 
-    do
+    while (true)
     {
-        printf("Inter NUMB1: ");
-        scanf("%f", &numb1);
+        printf("\nEnter Operator (+, -, *, /) or 'q' to quit: ");
+        if (scanf(" %c", &op) != 1 || op == 'q' || op == 'Q')
+        {
+            printf("Exiting Calculator!\n");
+            break;
+        }
 
-        printf("Inter Oprator: ");
-        scanf(" %c", &op);
+        printf("Enter NUMB1: ");
+        if (scanf("%f", &numb1) != 1)
+        {
+            printf("Invalid number entered!\n");
+            while (getchar() != '\n');
+            continue;
 
-        printf("Inter NUMB2: ");
-        scanf("%f", &numb2);
+        }
 
-        result = calculate(numb1, numb2, op);
+        printf("Enter NUMB2: ");
+        if (scanf("%f", &numb2) != 1)
+        {
+            printf("Invalid number entered!\n");
+            while (getchar() != '\n');
+            continue;
+        }
 
-        printf("Result: %.2f\n", result);
-    } while (true);
+        if (calculate(numb1, numb2, op, &result))
+        {
+            printf("Result: %.3f\n", result);
+        }
+    }
 
+    return 0;
 }
 
-float calculate(float n1, float n2, char op)
+bool calculate(float n1, float n2, char op, float *results)
 {
-    float result = 0.0;
-
     switch (op)
     {
     case '+':
-        result = n1 + n2;
-        break;
+        *results = n1 + n2;
+        return true;
 
     case '-':
-        result = n1 - n2;
-        break;
+        *results = n1 - n2;
+        return true;
 
     case '*':
-        result = n1 * n2;
-        break;
+        *results = n1 * n2;
+        return true;
 
     case '/':
-        result = n1 / n2;
-        break;
+        if (n2 == 0)
+        {
+            printf("Error: You can't divide by zero!\n");
+            return false;
+        }
+
+        *results = n1 / n2;
+        return true;
 
     default:
-        printf("Error: Invalid oprator!");
-        break;
+        printf("Error: Invalid operator!\n");
+        return false;
     }
-
-    return result;
 }
