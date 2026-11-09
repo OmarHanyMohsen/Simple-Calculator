@@ -1,67 +1,98 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-bool calculate(float n1, float n2, char op, float *results);
+bool calculate(double n1, double n2, char op, double *results);
+void remove_trails(void);
 
 int main(void)
 {
-    float numb1 = 0.0;
-    float numb2 = 0.0;
-    float result = 0.0;
+    printf("\n=================================\n");
+    printf("|       SIMPLE CALCULATOR       |\n");
+    printf("=================================\n");
+    printf("|Enter '+' for Addition         |\n");
+    printf("|Enter '-' for Subtraction      |\n");
+    printf("|Enter '*' for Multiplication   |\n");
+    printf("|Enter '/' for Division         |\n");
+    printf("|Enter 'q' to Quit              |\n");
+    printf("=================================\n");
+
+    double numb1 = 0.0, numb2 = 0.0, result = 0.0;
     char op;
 
     while (true)
     {
-        printf("\nEnter Operator (+, -, *, /) or 'q' to quit: ");
+        printf("\nEnter Operator: ");
         if (scanf(" %c", &op) != 1 || op == 'q' || op == 'Q')
         {
-            printf("Exiting Calculator!\n");
+            printf("\n=================================\n");
+            printf("|       Exiting Calculator      |\n");
+            printf("=================================\n");
             break;
         }
 
+        if (op != '+' && op != '-' && op != '*' && op != '/')
+        {
+            printf("Error: Invalid Operator!");
+            remove_trails();
+            continue;
+        }
+
         printf("Enter NUMB1: ");
-        if (scanf("%f", &numb1) != 1)
+        if (scanf("%lf", &numb1) != 1)
         {
             printf("Invalid number entered!\n");
-            while (getchar() != '\n');
+            remove_trails();
             continue;
 
         }
 
         printf("Enter NUMB2: ");
-        if (scanf("%f", &numb2) != 1)
+        if (scanf("%lf", &numb2) != 1)
         {
             printf("Invalid number entered!\n");
-            while (getchar() != '\n');
+            remove_trails();
             continue;
         }
 
         if (calculate(numb1, numb2, op, &result))
         {
-            printf("Result: %.3f\n", result);
+            printf("Result: %.3lf\n", result);
         }
     }
 
     return 0;
 }
 
-bool calculate(float n1, float n2, char op, float *results)
+// It handels removing the new line trails from the scanf functions.
+void remove_trails(void)
+{
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
+// The function that handles the calculations.
+bool calculate(double n1, double n2, char op, double *results)
 {
     switch (op)
     {
+    // Addition case.
     case '+':
         *results = n1 + n2;
         return true;
 
+    // Subtraction case.
     case '-':
         *results = n1 - n2;
         return true;
 
+    // Multiplication case.
     case '*':
         *results = n1 * n2;
         return true;
 
+    // Division case.
     case '/':
+        // If the user try to divide by zero it doesn't allow it.
         if (n2 == 0)
         {
             printf("Error: You can't divide by zero!\n");
