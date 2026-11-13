@@ -29,11 +29,11 @@ int main(void)
             printf("=================================\n");
             break;
         }
+        remove_trails();
 
         if (op != '+' && op != '-' && op != '*' && op != '/')
         {
-            printf("Error: Invalid Operator!");
-            remove_trails();
+            printf("Error: Invalid Operator!\n");
             continue;
         }
 
@@ -45,6 +45,7 @@ int main(void)
             continue;
 
         }
+        remove_trails();
 
         printf("Enter NUMB2: ");
         if (scanf("%lf", &numb2) != 1)
@@ -53,6 +54,7 @@ int main(void)
             remove_trails();
             continue;
         }
+        remove_trails();
 
         if (calculate(numb1, numb2, op, &result))
         {
